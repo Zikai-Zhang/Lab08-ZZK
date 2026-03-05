@@ -13,4 +13,14 @@ public class CustomListTest {
         // This will fail initially because hasCity() doesn't exist
         assertTrue(list.hasCity(calgary)); // this
     }
+
+    @Test
+    void testDelete() {
+        CityList cityList = mockCityList();
+
+        assertEquals(1, cityList.countCities());
+        cityList.delete(mockCity());
+        assertEquals(0, cityList.countCities());
+        assertFalse(cityList.hasCity(mockCity()));
+    }
 }
