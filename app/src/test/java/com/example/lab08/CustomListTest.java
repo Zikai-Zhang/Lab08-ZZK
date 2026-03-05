@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CustomListTest {
+
     @Test
     public void testHasCity() {
         CustomList list = new CustomList();
@@ -16,11 +17,11 @@ public class CustomListTest {
 
     @Test
     void testDelete() {
-        CityList cityList = mockCityList();
+        CustomList cityList = new CustomList();
+        City calgary = new City("Calgary", "AB");
+        cityList.addCity(calgary);
 
-        assertEquals(1, cityList.countCities());
-        cityList.delete(mockCity());
-        assertEquals(0, cityList.countCities());
-        assertFalse(cityList.hasCity(mockCity()));
+        assertDoesNotThrow(() -> cityList.delete(calgary));
+        assertThrows(IllegalArgumentException.class, () -> cityList.delete(calgary));
     }
 }
